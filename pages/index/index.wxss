@@ -1,0 +1,21 @@
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+.js-content{
+  justify-content: space-around;
+}
+.top{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+}
+.top image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.w100-h100{
+  width: 210rpx;
+  height: 100rpx;
+}

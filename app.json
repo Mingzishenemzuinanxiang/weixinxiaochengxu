@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/bookcity/index",
+    "pages/search/index"
+  ],
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index"
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "爱阅书城",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#sads",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "书架",
+      "iconPath": "assets/icon/bookshelf.png",
+      "selectedIconPath": "assets/icon/bookshelf1.png"
+    },{
+      "pagePath": "pages/bookcity/index",
+      "text": "书城",
+      "iconPath": "assets/icon/bookcity.png",
+      "selectedIconPath": "assets/icon/bookcity1.png"
+    },{
+      "pagePath": "pages/search/index",
+      "text": "搜索",
+      "iconPath": "assets/icon/search.png",
+      "selectedIconPath": "assets/icon/search1.png"
+    }
+  ]
+  }
+}

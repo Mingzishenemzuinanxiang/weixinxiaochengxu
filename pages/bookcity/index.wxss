@@ -1,0 +1,4 @@
+/* pages/bookcity/index.wxss */
+.body{
+  margin: 10rpx;
+}
