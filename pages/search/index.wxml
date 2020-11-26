@@ -1,2 +1,105 @@
-<!--pages/search/index.wxml-->
-<text>pages/search/index.wxml</text>
+<view
+ class="kuang"
+ hover-class="none"
+ hover-stop-propagation="false"
+>
+	<view class="">
+		<van-search
+		 value="{{ value }}"
+		 input-align="center"
+		 placeholder="请输入搜索关键词"
+		 bind:search="onSearch"
+		/>
+	</view>
+	<view wx:if="{{bookLists.length===0}}">
+		<view class="flex jc-sp-bt">
+			<view>
+				<text class=" font-title">大家都在搜</text>
+			</view>
+			<view bindtap="switchall">
+				<van-icon name="replay" />
+				换一换
+			</view>
+
+		</view>
+		<view class=" flex fl-w w100">
+			<van-button
+			 size="small"
+			 wx:for="{{arrlists}}"
+			 wx:key="index"
+			 bindtap="onclick"
+			 data-id="{{item.book}}"
+			 color="{{beijing[index]}}"
+			>{{item.word}}
+			</van-button>
+		</view>
+
+		<view class="flex jc-sp-bt">
+			<view>
+				<text class=" font-title">搜索历史</text>
+			</view>
+			<view class="flex" bindtap="delseach">
+				<image
+				 class="image"
+				 src="../../assets/icon/del.png"
+				 mode="aspectFit|aspectFill|widthFix"
+				 lazy-load="false"
+				 binderror=""
+				 bindload=""
+				>
+				</image>
+				清空
+			</view>
+
+		</view>
+		<view class=" flex fl-w w100">
+			<van-button
+			 size="small"
+			 wx:for="{{searchKey}}"
+			 wx:key="index"
+			>{{item}}
+			</van-button>
+		</view>
+	</view>
+	<view wx:else>
+		<view
+		 class=" sousuo padding-10"
+		 wx:for="{{bookLists}}"
+		 wx:key="index"
+		 bindtap="onclick"
+		 data-id="{{item._id}}"
+		>
+			<view
+			 class="img"
+			 hover-class="none"
+			 hover-stop-propagation="false"
+			>
+				<image
+				 src="{{item.cover}}"
+				 lazy-load="false"
+				 binderror=""
+				 bindload=""
+				>
+				</image>
+			</view>
+
+			<view>
+				<view class="texttitle">
+					{{item.title}}
+				</view>
+				<view class=" font-title">
+					{{item.author}}
+				</view>
+
+				<view class="van-multi-ellipsis--l3 font-title">
+					{{item.shortIntro}}
+				</view>
+				<view class="shoucang">
+					最近收藏{{item.latelyFollower}}
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>
+

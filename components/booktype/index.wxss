@@ -1,1 +1,25 @@
 /* components/booktype/index.wxss */
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.kuang{
+  display: flex;
+  width: 230rpx;
+  /* background-color: #bf4040; */
+  /* border: 1px solid #848484; */
+  height: 230rpx;
+  padding: 6rpx;
+  align-items: center;
+  justify-content: center;
+}
+.textweizhi{
+  text-align: center;
+}
+.font-bolder{
+  font-weight: bolder;
+}
+.font-size-sm{
+  font-size: 30rpx;
+  color: #ada9a9;
+}

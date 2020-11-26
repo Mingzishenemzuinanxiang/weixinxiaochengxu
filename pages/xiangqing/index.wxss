@@ -1,0 +1,22 @@
+/* pages/xiangqing/index.wxss */
+
+.top {
+    width: 100%;
+    height: 240rpx;
+    background-color: red;
+}
+
+image {
+    width: 100%;
+    height: 100%;
+}
+
+.img {
+    width: 300rpx;
+    height: 400rpx;
+    position: absolute;
+    left: 33%;
+    top: 90rpx;
+    border: 2rpx solid #d0baba;
+    box-shadow: 5rpx 5rpx 5rpx #d0baba;
+}

@@ -1,0 +1,12 @@
+<van-tabs active="{{clicltab}}">
+	<van-tab
+	 wx:for="{{typeList}}"
+	 wx:key="index"
+	 title="{{item.name}}"
+	 name="{{item.id}}"
+	>
+
+	</van-tab>
+
+</van-tabs>
+

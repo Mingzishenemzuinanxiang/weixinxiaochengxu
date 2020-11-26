@@ -1,0 +1,13 @@
+<view>
+	<view class="top">
+	</view>
+	<view class="img">
+		<image
+		 class=""
+		 src="{{data.cover}}"
+		 lazy-load="false"
+		>
+		</image>
+	</view>
+</view>
+

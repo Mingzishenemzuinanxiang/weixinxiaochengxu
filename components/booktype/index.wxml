@@ -1,2 +1,26 @@
-<!--components/booktype/index.wxml-->
-<text>components/booktype/index.wxml</text>
+<view>
+	<van-cell center title="{{title}}" />
+	<view class="flex">
+		<view
+		 class="kuang"
+		 wx:for="{{lists}}"
+		 wx:key="index"
+		>
+			<view
+			 class="textweizhi"
+			 bindtap="clickA"
+			 data-name="{{item.name}}"
+			 data-type="{{type}}"
+			>
+				<view>
+					<text class="font-bolder">{{item.name}}</text>
+				</view>
+				<view>
+					<text class="font-size-sm">{{item.bookCount}}本</text>
+				</view>
+			</view>
+
+		</view>
+	</view>
+</view>
+

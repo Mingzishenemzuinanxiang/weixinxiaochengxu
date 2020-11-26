@@ -7,7 +7,6 @@ Page({
    */
   data: {
     active:'分类',
-    lists:[],
   },
   onChange(e){
     console.log(e.detail.name)
@@ -17,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     Api.default.getClass().then(res=>{
-        this.data.lists = res
+        this.setData({lists:res})
         console.log(res)
     })
   },
