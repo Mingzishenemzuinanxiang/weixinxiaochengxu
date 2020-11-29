@@ -11,6 +11,7 @@
 			 bindtap="clickA"
 			 data-name="{{item.name}}"
 			 data-type="{{type}}"
+			 data-sex="{{title}}"
 			>
 				<view>
 					<text class="font-bolder">{{item.name}}</text>

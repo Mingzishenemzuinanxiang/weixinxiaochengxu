@@ -6,8 +6,7 @@
 .kuang{
   display: flex;
   width: 230rpx;
-  /* background-color: #bf4040; */
-  /* border: 1px solid #848484; */
+  border: 1rpx solid #848484;
   height: 230rpx;
   padding: 6rpx;
   align-items: center;

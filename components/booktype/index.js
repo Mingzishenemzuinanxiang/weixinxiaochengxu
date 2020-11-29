@@ -28,12 +28,12 @@ Component({
      */
     methods: {
         clickA(e) {
-            let { name, type } = e.currentTarget.dataset;
+            let { name, type ,sex} = e.currentTarget.dataset;
             wx.showLoading({
                 title: '加载中。。。',
             })
             wx.navigateTo({
-                url: `/pages/booktype/index?name=${name}&&type=${type}`
+                url: `/pages/booktype/index?name=${name}&&type=${type}&&xing=${sex}`
             })
         },
     }

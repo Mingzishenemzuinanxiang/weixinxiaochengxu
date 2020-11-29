@@ -1,12 +1,35 @@
-<van-tabs active="{{clicltab}}">
-	<van-tab
-	 wx:for="{{typeList}}"
-	 wx:key="index"
-	 title="{{item.name}}"
-	 name="{{item.id}}"
-	>
+<view>
+	<van-tabs active="{{clicltab}}" bind:change="update1">
+		<van-tab wx:for="{{typeList}}" wx:key="index" title="{{item.name}}" name="{{item.id}}">
+		</van-tab>
 
-	</van-tab>
+	</van-tabs>
 
-</van-tabs>
-
+	<van-tabs swipeable bind:change="update2">
+		<van-tab title="全部" name=""> </van-tab>
+		<van-tab wx:for="{{bookClass}}" wx:key="index" title="{{item}}" name="{{item}}">
+		</van-tab>
+	</van-tabs>
+</view>
+<view>
+	<view class=" sousuo padding-10" wx:for="{{bookLists}}" wx:key="index" bindtap="onclick" data-id="{{item._id}}">
+		<view class="img" hover-class="none" hover-stop-propagation="false">
+			<image src="{{item.cover}}" lazy-load="false" binderror="" bindload="">
+			</image>
+		</view>
+		<view>
+			<view class="texttitle">
+				{{item.title}}
+			</view>
+			<view class=" font-title">
+				{{item.author}}
+			</view>
+			<view class="van-multi-ellipsis--l3 font-title">
+				{{item.shortIntro}}
+			</view>
+			<!-- <view class="shoucang">
+				最近收藏{{item.latelyFollower}}
+			</view> -->
+		</view>
+	</view>
+</view>

@@ -8,16 +8,16 @@ Page({
   data: {
     active:'分类',
   },
-  onChange(e){
-    console.log(e.detail.name)
-  },
+  // onChange(e){
+  //   console.log(e.detail.name)
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     Api.default.getClass().then(res=>{
         this.setData({lists:res})
-        console.log(res)
+        // console.log(res)
     })
   },
 

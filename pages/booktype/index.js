@@ -1,7 +1,11 @@
 // pages/booktype/index.js
 const api = require('../../http/request')
-Page({
+import store from '../../store/index'
+import create from '../../utils/create'
 
+create.Page(store, {
+
+    use: ['msg'],
     /**
      * 页面的初始数据
      */
@@ -30,88 +34,150 @@ Page({
             }
         ],
         tap: {},
-        bookClass: []
+        bookClass: [],
+        bookLists: [],
+        class1: "",
+        class12: "",
+        booktype: {
+            gender: "",
+            type: "",
+            major: "",
+            minor: "",
+            start: 1,
+        },
     },
-
+    update1(item) {
+        this.data.booktype.type = item.detail.name
+        this.getBookLists()
+    },
+    update2(item) {
+        this.data.booktype.minor = item.detail.name
+        this.getBookLists()
+    },
+    // update(){
+    //     this.store.data.msg = "修改后的值"
+    // },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         console.log(options)
         this.data.tap = options
-        this.setData({ tap: this.data.tap })
+        // this.data.booktype.gender = options.xing
+        this.data.booktype.major = options.name
+        this.setData({
+            tap: this.data.tap
+        })
         wx.setNavigationBarTitle({
             title: options.name,
         })
         let info = wx.getStorageSync('bookclass');
-
-        if (info[this.data.tap.type].length > 0) {
-            // this.data.bookClass = info[this.data.tap.type]
-            console.log(info[this.data.tap.type])
-            this.setData({ bookClass: this.data.bookClass })
+        let obj = info[this.data.tap.type]
+        if (info && obj.length > 0) {
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const element = obj[key];
+                    if (element.major === this.data.tap.name) {
+                        this.data.bookClass = element.mins
+                        this.setData({
+                            bookClass: this.data.bookClass
+                        })
+                    }
+                }
+            }
         } else {
             this.getClass()
         }
-
+        this.getBookLists()
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
-
+    onReachBottom: function (e) {
+        this.data.booktype.start += 1
+        this.getBookLists()
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
-    }
+        }
 
-    ,
+        ,
     getClass() {
         api.default.getMinor().then(res => {
-            console.log(res);
             wx.setStorageSync('bookclass', res)
-                // this.data.bookClass = res[this.data.tap.type].mins
-            this.setData({ bookClass: this.data.bookClass })
-
+            let obj = res[this.data.tap.type]
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const element = obj[key];
+                    if (element.major === this.data.tap.name) {
+                        this.data.bookClass = element.mins
+                        this.setData({
+                            bookClass: this.data.bookClass
+                        })
+                    }
+                }
+            }
+        })
+    },
+    getBookLists() {
+        api.default.getClassBook(this.data.booktype).then(res => {
+            console.log(res.books)
+            res.books.map(item => {
+                item.cover = `${this.store.data.imgurl}${item.cover}`
+            })
+            this.data.bookLists = res.books
+            if (this.data.booktype.start !== 1) {
+                this.data.bookLists = [...res.books,...this.data.bookLists]
+            }
+            this.setData({
+                bookLists: this.data.bookLists
+            })
+        })
+    },
+    onclick(item){
+        let id = item.currentTarget.dataset.id
+        wx.navigateTo({
+            url: '/pages/xiangqing/index?id=' + id,
         })
     }
 })

@@ -35,5 +35,11 @@ export default {
         return http({
             url: Url.book.bookInfo(datas),
         })
+    },
+    //获取小分类书籍
+    getClassBook(datas){
+        return http({
+            url: Url.classification.getCatsBooks(datas.gender,datas.type,datas.major,datas.minor,datas.start),
+        })
     }
 }
