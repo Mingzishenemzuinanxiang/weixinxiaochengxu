@@ -20,3 +20,15 @@ image {
     border: 2rpx solid #d0baba;
     box-shadow: 5rpx 5rpx 5rpx #d0baba;
 }
+
+.title {
+    display: flex;
+    width: 100%;
+    height: 325rpx;
+    justify-content: center;
+}
+
+.title text {
+    position: relative;
+    top: 234rpx;
+}

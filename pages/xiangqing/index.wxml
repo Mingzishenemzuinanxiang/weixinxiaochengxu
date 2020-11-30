@@ -9,5 +9,13 @@
 		>
 		</image>
 	</view>
+	<view class="title">
+		<text >
+			{{data.title}}
+		</text>
+	</view>
+	<view>
+		{{data.author}}
+	</view>
 </view>
 

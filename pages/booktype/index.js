@@ -36,8 +36,8 @@ create.Page(store, {
         tap: {},
         bookClass: [],
         bookLists: [],
-        class1: "",
-        class12: "",
+        booknum: 0,
+        class1: "all",
         booktype: {
             gender: "",
             type: "",
@@ -50,21 +50,17 @@ create.Page(store, {
         this.data.booktype.type = item.detail.name
         this.getBookLists()
     },
-    update2(item) {
-        this.data.booktype.minor = item.detail.name
-        this.getBookLists()
-    },
+
     // update(){
     //     this.store.data.msg = "修改后的值"
     // },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        console.log(options)
+    onLoad: function(options) {
         this.data.tap = options
-        // this.data.booktype.gender = options.xing
         this.data.booktype.major = options.name
+        this.data.booktype.gender = options.type
         this.setData({
             tap: this.data.tap
         })
@@ -94,42 +90,42 @@ create.Page(store, {
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    onReady: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function () {
+    onHide: function() {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function () {
+    onUnload: function() {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {
+    onPullDownRefresh: function() {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function (e) {
+    onReachBottom: function(e) {
         this.data.booktype.start += 1
         this.getBookLists()
     },
@@ -137,11 +133,19 @@ create.Page(store, {
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    onShareAppMessage: function() {
 
-        }
-
-        ,
+    },
+    qiehuan(e) {
+        let info = e.currentTarget.dataset;
+        let click = info === '' ? "全部" : info.id
+        this.setData({ class1: click })
+        this.data.booktype.minor = info.name
+        this.data.booktype.start = 1
+        this.data.booknum = 0
+        this.data.bookLists = []
+        this.getBookLists()
+    },
     getClass() {
         api.default.getMinor().then(res => {
             wx.setStorageSync('bookclass', res)
@@ -161,20 +165,31 @@ create.Page(store, {
     },
     getBookLists() {
         api.default.getClassBook(this.data.booktype).then(res => {
-            console.log(res.books)
+            this.data.booknum = res.total;
+
+            if (this.data.bookLists.length >= this.data.booknum) {
+                wx.showToast({
+                    title: '已经到底了',
+                })
+                return
+            }
+
             res.books.map(item => {
                 item.cover = `${this.store.data.imgurl}${item.cover}`
             })
-            this.data.bookLists = res.books
             if (this.data.booktype.start !== 1) {
-                this.data.bookLists = [...res.books,...this.data.bookLists]
+                res.books.map(item => {
+                    this.data.bookLists.push(item)
+                })
+            } else {
+                this.data.bookLists = res.books
             }
             this.setData({
                 bookLists: this.data.bookLists
             })
         })
     },
-    onclick(item){
+    onclick(item) {
         let id = item.currentTarget.dataset.id
         wx.navigateTo({
             url: '/pages/xiangqing/index?id=' + id,

@@ -1,20 +1,66 @@
 <view>
 	<van-tabs active="{{clicltab}}" bind:change="update1">
-		<van-tab wx:for="{{typeList}}" wx:key="index" title="{{item.name}}" name="{{item.id}}">
+		<van-tab
+		 wx:for="{{typeList}}"
+		 wx:key="index"
+		 title="{{item.name}}"
+		 name="{{item.id}}"
+		>
 		</van-tab>
 
 	</van-tabs>
 
-	<van-tabs swipeable bind:change="update2">
+	<scroll-view scroll-x class="scroll-header">
+		<view
+		 bindtap="qiehuan"
+		 id="all"
+		 class="scroll-view-item bc_red {{ class1=='all'?'click':''}}"
+		 data-id="all"
+		>全部
+		</view>
+		<view
+		 bindtap="qiehuan"
+		 wx:for="{{bookClass}}"
+		 wx:key="index"
+		 id="{{item}}"
+		 data-id="{{item}}"
+		 data-name="{{item}}"
+		 class="scroll-view-item bc_red {{class1==item?'click':''}}"
+		>{{item}}
+		</view>
+
+	</scroll-view>
+
+	<!-- <van-tabs swipeable bind:change="update2">
 		<van-tab title="全部" name=""> </van-tab>
-		<van-tab wx:for="{{bookClass}}" wx:key="index" title="{{item}}" name="{{item}}">
+		<van-tab
+		 wx:for="{{bookClass}}"
+		 wx:key="index"
+		 title="{{item}}"
+		 name="{{item}}"
+		>
 		</van-tab>
-	</van-tabs>
+	</van-tabs> -->
 </view>
 <view>
-	<view class=" sousuo padding-10" wx:for="{{bookLists}}" wx:key="index" bindtap="onclick" data-id="{{item._id}}">
-		<view class="img" hover-class="none" hover-stop-propagation="false">
-			<image src="{{item.cover}}" lazy-load="false" binderror="" bindload="">
+	<view
+	 class=" sousuo padding-10"
+	 wx:for="{{bookLists}}"
+	 wx:key="index"
+	 bindtap="onclick"
+	 data-id="{{item._id}}"
+	>
+		<view
+		 class="img"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			<image
+			 src="{{item.cover}}"
+			 lazy-load="false"
+			 binderror=""
+			 bindload=""
+			>
 			</image>
 		</view>
 		<view>
@@ -27,9 +73,10 @@
 			<view class="van-multi-ellipsis--l3 font-title">
 				{{item.shortIntro}}
 			</view>
-			<!-- <view class="shoucang">
+			<view class="shoucang">
 				最近收藏{{item.latelyFollower}}
-			</view> -->
+			</view>
 		</view>
 	</view>
 </view>
+
