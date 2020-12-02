@@ -9,6 +9,7 @@ Page({
     data: {
         data: null,
         id: null,
+        bookInfo: null,
     },
 
     /**
@@ -18,6 +19,7 @@ Page({
         this.data.id = options.id
         this.setData({ id: options.id })
         this.getData()
+
     },
 
     /**
@@ -75,8 +77,16 @@ Page({
             })
             res.cover = app.imageurl() + res.cover
             this.setData({ data: res })
+            api.default.bookChapters(this.data.data._id).then(res => {
+                console.log(res);
+            })
             console.log(this.data.data);
-
         })
+
+
+    },
+    addshujia(e) {
+        let id = e.currentTarget.dataset.id;
+        console.log(id);
     }
 })

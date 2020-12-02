@@ -30,5 +30,26 @@ image {
 
 .title text {
     position: relative;
-    top: 234rpx;
+    top: 219rpx;
+    font-size: 43rpx;
+    font-weight: bold;
+    font-family: "楷体";
+}
+
+.zuozhe {
+    display: flex;
+    justify-content: center;
+    color: #aba7a7;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.zuixinzhang {
+    font-size: 26rpx;
+    padding: 2rpx;
+    margin-top: 9rpx;
 }

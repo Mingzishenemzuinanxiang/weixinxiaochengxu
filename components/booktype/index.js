@@ -28,7 +28,7 @@ Component({
      */
     methods: {
         clickA(e) {
-            let { name, type ,sex} = e.currentTarget.dataset;
+            let { name, type, sex } = e.currentTarget.dataset;
             wx.showLoading({
                 title: '加载中。。。',
             })

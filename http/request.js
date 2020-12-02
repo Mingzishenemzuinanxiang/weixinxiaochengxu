@@ -37,9 +37,26 @@ export default {
         })
     },
     //获取小分类书籍
-    getClassBook(datas){
+    getClassBook(datas) {
         return http({
-            url: Url.classification.getCatsBooks(datas.gender,datas.type,datas.major,datas.minor,datas.start),
+            url: Url.classification.getCatsBooks(datas.gender, datas.type, datas.major, datas.minor, datas.start),
         })
-    }
+    },
+    //添加到书架
+    addShujia(datas) {
+        return http({
+            url: Url.classification.getCatsBooks(datas.gender, datas.type, datas.major, datas.minor, datas.start),
+        })
+    },
+    bookChapters(datas) {
+        return http({
+            url: Url.book.bookChapters(datas),
+        })
+    },
+    //书籍排行
+    getRank(datas) {
+        return http({
+            url: Url.rank.rankCategory,
+        })
+    },
 }

@@ -1,0 +1,24 @@
+<view
+ class=""
+ hover-class="none"
+ hover-stop-propagation="false"
+>
+	<view
+	 class=""
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		{{title}}
+	</view>
+	<view
+	 class=" flex"
+	 wx:for="{{lists}}"
+	 wx:key="index"
+	 wx:if="{{index<7}}"
+	>
+		<image class=" icon" src="{{imageUrl}}{{item.cover}}">
+		</image>
+		{{item.title}}
+	</view>
+</view>
+

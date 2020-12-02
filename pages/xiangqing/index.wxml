@@ -14,8 +14,50 @@
 			{{data.title}}
 		</text>
 	</view>
-	<view>
+	<view class="zuozhe">
 		{{data.author}}
+	</view>
+	<view class="flex">
+		<view class="">
+			<van-button round type="danger">开始阅读</van-button>
+		</view>
+		<text class="" selectable="false" space="false" decode="false">
+		　　　　　
+		</text>
+		<view class="">
+			<van-button
+			 round
+			 type="default"
+			 bind:tap="addshujia"
+			 data-id="{{data._id}}"
+			>加入书架
+			</van-button>
+		</view>
+	</view>
+	<view class="flex">
+		<van-rate value="{{ data.safelevel }}" />
+	</view>
+	<view
+	 class="flex zuixinzhang"
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		跟新至：
+		<span style="color:#6a81f3">{{data.lastChapter}}</span>
+	</view>
+	<view
+	 class=""
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	>
+		<van-tabs active="1" bind:change="onChange">
+			<van-tab title="详情" name="1">
+				<view class="">
+					简介：{{data.longIntro}}
+				</view>
+			</van-tab>
+			<van-tab title="评价({{data.num}})" name="2">内容 2</van-tab>
+		</van-tabs>
 	</view>
 </view>
 

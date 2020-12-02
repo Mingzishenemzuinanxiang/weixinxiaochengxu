@@ -23,7 +23,9 @@
 			></booktype>
 		</van-tab>
 		<van-tab title="排行" name="排行">
-
+			<rank title="男生" lists="{{rankLists.male}}"></rank>
+			<rank title="女生" lists="{{rankLists.female}}"></rank>
+			<rank title="其他" lists="{{rankLists.picture}}"></rank>
 		</van-tab>
 	</van-tabs>
 </view>
